@@ -5,6 +5,7 @@ const appDone = $("#done");
 const newTodo = $("#new-todo");
 const btnAddTodo = $("#add-todo");
 
+newTodo.focus();
 const todos = [];
 
 const cleanScreen = () => {
@@ -16,24 +17,31 @@ const renderTodos = () => {
   cleanScreen();
   for(todo of todos){
     let todoIndex = todos.indexOf(todo);
+    let counter = todoIndex + 1;
     if(todo.done){
       appDone.append(`
-                      <tr><th>${todoIndex}</th>
+                      <tr><th>${counter}</th>
                       <td>
-                        <strike>${todo.title}</strike>
-                        <input type='checkbox' onchange='markAdd(${todoIndex})' checked> marcar como feito
-                        <a href="#" onclick='deleteTodos(${todoIndex})'>deletar</a>
+                      <strike class='text-success'>${todo.title}</strike>
+                      </td>
+                      <td>
+                      <input type='checkbox' onchange='markAdd(${todoIndex})' checked>
+                      </td>
+                      <td>
+                      <a href="#" onclick='deleteTodos(${todoIndex})'>deletar</a>
                       </td></tr>
                     `);
     } else {
-      app.append(`
-                  <tr><th>${todoIndex}</th>
-                  <td>
-                    ${todo.title}
-                    <input type='checkbox' onchange='markAdd(${todoIndex})'> marcar como feito
-                    <a href="#" onclick="deleteTodos(${todoIndex})">deletar</a>
-                  </td></tr>`
-                );
+          app.append(`
+                      <tr><th>${counter}</th>
+                      <td><span class='text-info'>${todo.title}</span></td>
+                      <td>
+                      <input type='checkbox' onchange='markAdd(${todoIndex})'>
+                      </td>
+                      <td>
+                      <a href="#" onclick="deleteTodos(${todoIndex})">deletar</a>
+                      </td></tr>`
+                    );
     }   
   }
 }
@@ -50,8 +58,8 @@ const markAdd = (todo) => {
   obj = todos[todo];
   obj.done = !obj.done;
   obj.title = obj.title;
+  renderTodos();
 }
-
 
 const deleteTodos = (remove) => {
   todos.splice(remove, 1);
@@ -69,4 +77,3 @@ newTodo.on('keypress',function(e) {
         btnAddTodo.click();
     }
 });
-

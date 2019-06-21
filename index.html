@@ -10,28 +10,45 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-8 offset-2 full-height d-flex justify-content-center align-items-center">
+      <div class="row full-height">
+        <div class="col-sm-8 offset-2 d-flex justify-content-center align-items-center">
           <div class="table-responsive">
             <table class="table table-bordered p-5 bg-light text-center">
               <thead>
                 <tr>
                   <th scope="col">#</th>
-                  <th scope="col">First</th>
+                  <th scope="col">Para Fazer</th>
+                  <th scope="col">Marcar</th>
+                  <th scope="col">Deletar</th>
                 </tr>
               </thead>
               <tbody id="app">
               </tbody>
             </table>
+            <div class="form-group mt-5">
+              <input type="text" id="new-todo" class="form-control" placeholder="adicionar uma tarefa">
+              <button class="btn btn-outline-info btn-lg btn-block mt-4" id="add-todo">Adicionar</button>
+            </div>
           </div>
         </div>
+        <div class="col-sm-8 offset-2 d-flex justify-content-center align-items-center">
+            <div class="table-responsive">
+              <table class="table table-bordered p-5 bg-light text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Feitas</th>
+                    <th scope="col">Desmarcar</th>
+                    <th scope="col">Deletar</th>
+                  </tr>
+                </thead>
+                <tbody id="done">
+                </tbody>
+              </table>
+            </div>
+          </div>
       </div>
     </div>
-    <input type="text" id="new-todo">
-    <button id="add-todo">Adicionar</button>
-
-    <ol id="done">
-    </ol>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
