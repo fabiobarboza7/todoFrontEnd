@@ -17,21 +17,25 @@ const renderTodos = () => {
   for(todo of todos){
     let todoIndex = todos.indexOf(todo);
     if(todo.done){
-      appDone.append(`<li>
-                  ${todo.title}
-                  <input type='checkbox' onchange='markAdd(${todoIndex})' checked> marcar como feito
-                  <a href="#" onclick='deleteTodos(${todoIndex})'>deletar</a>
-                </li>`);
+      appDone.append(`
+                      <tr><th>${todoIndex}</th>
+                      <td>
+                        <strike>${todo.title}</strike>
+                        <input type='checkbox' onchange='markAdd(${todoIndex})' checked> marcar como feito
+                        <a href="#" onclick='deleteTodos(${todoIndex})'>deletar</a>
+                      </td></tr>
+                    `);
     } else {
-      app.append(`<li>
-                  ${todo.title}
-                  <input type='checkbox' onchange='markAdd(${todoIndex})'> marcar como feito
-                  <a href="#" onclick="deleteTodos(${todoIndex})">deletar</a>
-                </li>`);
+      app.append(`
+                  <tr><th>${todoIndex}</th>
+                  <td>
+                    ${todo.title}
+                    <input type='checkbox' onchange='markAdd(${todoIndex})'> marcar como feito
+                    <a href="#" onclick="deleteTodos(${todoIndex})">deletar</a>
+                  </td></tr>`
+                );
     }   
-    
   }
-  console.log(todos.length);
 }
 
 const addTodo = (text) => {
@@ -46,8 +50,6 @@ const markAdd = (todo) => {
   obj = todos[todo];
   obj.done = !obj.done;
   obj.title = obj.title;
- 
-  renderTodos();
 }
 
 
